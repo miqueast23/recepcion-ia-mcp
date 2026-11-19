@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+:root{--g:#0BDA51;--gd:#079a3a;--ink:#0B1410;--am:#FFB020}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;background:transparent;font-family:"Segoe UI",system-ui,sans-serif;overflow:hidden}
+.full{position:absolute;inset:0}
+/* rótulos */
+.cap{position:absolute;left:0;right:0;bottom:0;height:300px;background:linear-gradient(transparent,rgba(0,0,0,.78));display:flex;align-items:flex-end;padding:0 120px 90px}
+.cap p{color:#fff;font-size:64px;font-weight:700;line-height:1.1;max-width:1500px;text-shadow:0 3px 18px rgba(0,0,0,.5)}
+.cap p b{color:var(--g)}
+.step{position:absolute;left:90px;top:80px;display:flex;align-items:center;gap:22px;background:rgba(11,20,16,.82);border-left:10px solid var(--g);padding:22px 40px 22px 30px;border-radius:0 18px 18px 0}
+.step .n{font-size:30px;font-weight:800;color:var(--g);letter-spacing:4px}
+.step .t{font-size:44px;font-weight:700;color:#fff}
+/* kiosco */
+.kiosk{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:1000px;height:720px;background:#16201b;border-radius:46px;padding:34px;box-shadow:0 40px 120px rgba(0,0,0,.6),inset 0 0 0 3px #2c3a33}
+.kiosk:after{content:"";position:absolute;left:50%;bottom:-120px;transform:translateX(-50%);width:160px;height:120px;background:linear-gradient(#26332c,#121915)}
+.scr{width:100%;height:100%;background:#f5f8f6;border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.bar{background:var(--ink);color:#fff;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;font-size:26px}
+.bar b{color:var(--g);font-size:30px}
+.body{flex:1;padding:30px 40px}
+h2{font-size:44px;color:var(--ink);margin-bottom:20px}
+.search{border:3px solid #cfd8d3;border-radius:16px;padding:16px 22px;font-size:28px;color:#7a8a82;margin-bottom:20px;background:#fff}
+.row{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:16px;padding:16px 24px;margin-bottom:12px;font-size:28px;border:3px solid transparent;color:var(--ink)}
+.row small{color:#6b7a73;font-size:22px;display:block}
+.row.sel{border-color:var(--g);background:#ecfdf2}
+.row .pi{font-size:24px;color:#6b7a73}
+.tap{position:absolute;width:90px;height:90px;border-radius:50%;background:rgba(11,218,81,.35);border:4px solid var(--g)}
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px;color:var(--ink)}
+.big{font-size:52px;font-weight:800}
+.mid{font-size:32px;color:#45554d}
+.spin{width:120px;height:120px;border-radius:50%;border:14px solid #d6e9dd;border-top-color:var(--g)}
+.check{width:170px;height:170px;border-radius:50%;background:var(--g);color:#fff;font-size:110px;display:flex;align-items:center;justify-content:center;font-weight:900}
+.chat{display:flex;flex-direction:column;gap:18px;padding:30px 40px}
+.q{align-self:flex-end;background:var(--ink);color:#fff;border-radius:22px 22px 4px 22px;padding:18px 26px;font-size:28px;max-width:75%}
+.a{align-self:flex-start;background:#fff;border:3px solid #d6e9dd;color:var(--ink);border-radius:22px 22px 22px 4px;padding:18px 26px;font-size:28px;max-width:80%}
+.a small{display:block;color:#6b7a73;font-size:20px;margin-top:8px}
+.a.warn{border-color:var(--am)}
+.ad{flex:1;background:linear-gradient(135deg,#0B1410,#0f3d24);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:60px;gap:18px}
+.ad .k{color:var(--g);font-size:30px;letter-spacing:5px;font-weight:700}
+.ad .h{font-size:72px;font-weight:800;line-height:1.05}
+.ad .m{font-size:34px;color:#cfe9d8}
+/* teléfono */
+.phone{position:absolute;right:170px;top:50%;transform:translateY(-50%);width:430px;height:860px;background:#111;border-radius:60px;padding:16px;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.ps{width:100%;height:100%;background:#ece5dd;border-radius:46px;overflow:hidden;display:flex;flex-direction:column}
+.ph{background:#075E54;color:#fff;padding:54px 24px 18px;display:flex;align-items:center;gap:14px;font-size:24px}
+.av{width:54px;height:54px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--ink);font-size:24px}
+.ph small{display:block;font-size:17px;opacity:.8}
+.msgs{flex:1;padding:24px 18px;display:flex;flex-direction:column;gap:14px}
+.in{background:#fff;border-radius:4px 18px 18px 18px;padding:16px 18px;font-size:23px;color:#111;line-height:1.35;box-shadow:0 1px 1px rgba(0,0,0,.1)}
+.in b{font-size:25px}
+.in .tm{display:block;text-align:right;font-size:16px;color:#888}
+.btn{background:#fff;border-radius:14px;padding:14px;text-align:center;color:#0a7cff;font-size:23px;font-weight:600;box-shadow:0 1px 1px rgba(0,0,0,.1)}
+.btn.on{background:#d9fdd3;color:#075E54;outline:3px solid #25D366}
+.out{align-self:flex-end;background:#d9fdd3;border-radius:18px 4px 18px 18px;padding:14px 18px;font-size:23px;color:#111}
+/* alerta */
+.alert{position:absolute;right:110px;top:110px;width:640px;background:rgba(20,16,6,.9);border:4px solid var(--am);border-radius:24px;padding:30px 36px;color:#fff;display:flex;gap:26px;align-items:center}
+.alert .ic{font-size:70px}
+.alert b{display:block;font-size:40px;color:var(--am)}
+.alert span{font-size:30px}
+/* cierre */
+.end{background:#050807;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.logo{display:flex;align-items:center;gap:34px}
+.mark{width:150px;height:150px;border-radius:40px;background:var(--g);display:flex;align-items:center;justify-content:center;color:#050807;font-size:100px;font-weight:900}
+.word{font-size:130px;font-weight:800;color:#fff;letter-spacing:-2px}
+.word b{color:var(--g)}
+.tag{font-size:54px;color:#e8f5ec;font-weight:300}
+.sub{font-size:30px;color:var(--g);letter-spacing:6px;font-weight:600}
+.hide{display:none}
+/* modelo de robot (de "Recepción IA · Inversión.html", escalado) */
+.rb{position:absolute;left:64%;top:56%;transform:translate(-50%,-50%) scale(.86);display:flex;flex-direction:column;align-items:center}
+.hd{width:340px;height:240px;background:#111412;border:6px solid var(--g);border-radius:84px;display:flex;align-items:center;justify-content:center;gap:58px;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.hd:before{content:"";position:absolute;top:-58px;width:9px;height:50px;background:var(--g)}
+.hd:after{content:"";position:absolute;top:-82px;width:30px;height:30px;border-radius:50%;background:var(--g);box-shadow:0 0 30px var(--g)}
+.ey{width:56px;height:74px;border-radius:30px;background:var(--g);box-shadow:0 0 24px rgba(11,218,81,.7)}
+.rs{margin-top:22px;width:540px;background:#111412;border:2px solid rgba(11,218,81,.35);border-radius:44px;padding:30px 32px;display:flex;flex-direction:column;gap:14px;color:#F2FFF6;font-size:26px}
+.rs .sb{color:#9DB5A5;font-size:24px}
+.rs .tt{font-size:36px;font-weight:800}
+.rb1{background:var(--g);color:#03140A;font-weight:800;border-radius:22px;padding:20px;text-align:center;font-size:28px}
+.rb2{border:2px solid rgba(255,255,255,.16);border-radius:22px;padding:18px;text-align:center;font-size:26px}
+.rr{display:flex;justify-content:space-between;align-items:center;background:#18201B;border-radius:18px;padding:13px 18px;font-size:24px;border:3px solid transparent}
+.rr small{display:block;color:#9DB5A5;font-size:19px}
+.rr.sel{border-color:var(--g)}
+.ch{font-size:19px;font-weight:800;padding:5px 12px;border-radius:999px;background:var(--g);color:#03140A}
+.ch.w{background:var(--am)}
+.hero{background:var(--g);color:#03140A;border-radius:24px;padding:18px 22px}
+.hero small{font-size:20px;opacity:.75}.hero div{font-size:36px;font-weight:800}
+.rbase{width:270px;height:34px;background:#18201B;border-radius:0 0 70px 70px;margin-top:12px}
+.rtap{position:absolute;width:80px;height:80px;border-radius:50%;background:rgba(11,218,81,.35);border:4px solid var(--g)}
+/* láminas de datos */
+.pn{position:absolute;inset:0;background:rgba(5,5,5,.86);padding:110px 130px;display:flex;flex-direction:column;justify-content:center;color:#F2FFF6}
+.tg{align-self:flex-start;background:var(--g);color:#03140A;font-weight:800;font-size:24px;padding:10px 22px;border-radius:999px;margin-bottom:26px;letter-spacing:1px}
+.pn h3{font-size:68px;font-weight:800;line-height:1.05;margin-bottom:46px;max-width:1500px}
+.pn h3 b{color:var(--g)}
+.gd{display:grid;gap:26px;grid-template-columns:repeat(4,1fr)}
+.cd{background:#111412;border:2px solid rgba(11,218,81,.18);border-radius:28px;padding:32px}
+.cd .bg{font-size:64px;font-weight:800;color:var(--g);line-height:1}
+.cd .bg.s{font-size:50px}
+.cd b{display:block;font-size:30px;margin-bottom:12px}
+.cd p{font-size:25px;color:#9DB5A5;margin-top:12px;line-height:1.35}
+.tb{width:100%;border-collapse:collapse;font-size:32px}
+.tb td{padding:16px 6px;border-bottom:1px solid rgba(11,218,81,.18);color:#9DB5A5}
+.tb td:last-child{text-align:right;color:#F2FFF6;font-weight:700}
+.tb tr.k td{color:#F2FFF6}.tb tr.k td:last-child{color:var(--g)}
+.nt{font-size:24px;color:#9DB5A5;margin-top:26px}
+.sp{display:flex;flex-direction:column;gap:24px}
+.si{display:flex;gap:28px;align-items:center;font-size:36px;color:#9DB5A5}
+.si .nu{flex:none;width:70px;height:70px;border-radius:50%;background:var(--g);color:#03140A;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:32px}
+.si b{color:#F2FFF6}
+.two2{display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:center}
+.bars{display:flex;align-items:flex-end;gap:40px;height:420px}
+.bars div{flex:1;background:var(--g);border-radius:16px 16px 0 0;display:flex;align-items:flex-start;justify-content:center;color:#03140A;font-weight:800;font-size:40px;padding-top:14px}
+.bl{display:flex;gap:40px;margin-top:14px}.bl span{flex:1;text-align:center;font-size:28px;color:#9DB5A5}
+/* panel de recepción */
+.dash{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:1200px;background:#0d100e;border:2px solid rgba(11,218,81,.3);border-radius:36px;padding:40px;color:#F2FFF6;display:flex;flex-direction:column;gap:18px;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.dash .hdr{display:flex;justify-content:space-between;font-size:30px;font-weight:800}.dash .hdr span{color:var(--g)}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.kp div{background:#18201B;border-radius:22px;padding:22px;font-size:22px;color:#9DB5A5}.kp b{display:block;font-size:52px;color:var(--g)}
+.dr{display:flex;justify-content:space-between;align-items:center;background:#18201B;border-radius:18px;padding:18px 24px;font-size:27px}
+.dr .ac{display:flex;gap:14px;align-items:center}
+.dr .lk{font-size:20px;border:2px solid var(--am);color:var(--am);border-radius:12px;padding:6px 12px;font-weight:700}
+.quote{font-size:96px;font-weight:800;line-height:1.05;color:#fff}.quote b{color:var(--g)}
+</style></head><body>
+<div id="root"></div>
+<script>
+const P = new URLSearchParams(location.hash.slice(1));
+const s = P.get('s'), txt = P.get('t') || '', n = P.get('n') || '';
+const bar = `<div class="bar"><b>Recepción IA</b><span>Torre Empresarial · Lobby</span></div>`;
+const people = (sel) => [
+  ['Carlos Gómez','Legal','Piso 5'],['María Pérez','Finanzas','Piso 8'],
+  ['Ana Torres','Recursos Humanos','Piso 3']
+].map(([a,b,c])=>`<div class="row ${sel&&a==='María Pérez'?'sel':''}"><div>${a}<small>${b}</small></div><span class="pi">${c}</span></div>`).join('');
+const kiosk = inner => `<div class="kiosk"><div class="scr">${bar}${inner}</div></div>`;
+const phone = inner => `<div class="phone"><div class="ps"><div class="ph"><div class="av">R</div><div>Recepción IA<small>en línea</small></div></div><div class="msgs">${inner}</div></div></div>`;
+const robot = inner => `<div class="rb"><div class="hd"><div class="ey"></div><div class="ey"></div></div><div class="rs">${inner}</div><div class="rbase"></div></div>`;
+const aviso = `<div class="in">🔔 <b>Llegó su visita</b><br>Juan Rodríguez<br>Lobby · Torre Empresarial<span class="tm">10:42 a. m.</span></div>`;
+const V = {
+  cap: `<div class="cap"><p>${txt}</p></div>`,
+  step: `<div class="step"><span class="n">${n}</span><span class="t">${txt}</span></div>`,
+  k1: kiosk(`<div class="body"><h2>¿A quién viene a visitar?</h2><div class="search">🔎 Escriba un nombre o departamento</div>${people(false)}</div>`),
+  k1t: kiosk(`<div class="body"><h2>¿A quién viene a visitar?</h2><div class="search">🔎 Escriba un nombre o departamento</div>${people(true)}</div><div class="tap" style="left:560px;top:395px"></div>`),
+  k2: kiosk(`<div class="center"><div class="spin"></div><div class="big">Avisando a María Pérez…</div><div class="mid">Finanzas · Piso 8<br>Visitante: Juan Rodríguez</div></div>`),
+  k3: kiosk(`<div class="center"><div class="check">✓</div><div class="big">María confirmó</div><div class="mid">Baja en 2 minutos. Puede tomar asiento.</div></div>`),
+  faq: kiosk(`<div class="chat"><div class="q">¿Dónde está el estacionamiento de visitantes?</div><div class="a">Sótano 1, puestos marcados en verde.<small>Fuente: guía de visitantes de la empresa</small></div><div class="q">¿Hay un cajero automático?</div><div class="a warn">No tengo ese dato. Le comunico con recepción.<small>Sin respuestas inventadas</small></div></div>`),
+  ad: kiosk(`<div class="ad"><span class="k">ANUNCIO</span><span class="h">Jornada de salud<br>para el personal</span><span class="m">Jueves 9:00 a. m. · Piso 3 · Sala Ávila</span></div>`),
+  p1: phone(aviso + `<div class="btn">Bajo ya</div><div class="btn">Bajo en 2 min</div><div class="btn">No puedo atender</div>`),
+  p2: phone(aviso + `<div class="btn">Bajo ya</div><div class="btn on">Bajo en 2 min</div><div class="btn">No puedo atender</div><div class="out">✓ Bajo en 2 min</div>`),
+  alert: `<div class="alert"><div class="ic">⏱</div><div><b>60 s sin respuesta</b><span>Recepción alertada · Juan Rodríguez espera en el lobby</span></div></div>`,
+  r0: robot(`<div class="tt">Buenos días 👋</div><div class="sb">¿Cómo le ayudo?</div><div class="rb1">Tengo una visita</div><div class="rb2">Tengo un QR</div><div class="rb2">Una consulta</div>`),
+  r1: robot(`<div class="tt">¿A quién visita?</div><div class="rr">Carlos Gómez<small>Legal · piso 5</small></div><div class="rr sel">María Pérez<small>Finanzas · piso 8</small></div><div class="rr">Ana Torres<small>Recursos Humanos · piso 3</small></div><div class="rtap" style="left:440px;top:430px"></div>`),
+  r2: robot(`<div class="tt">¿Avisamos a María Pérez?</div><div class="sb">Finanzas · piso 8<br>Visitante: Juan Rodríguez</div><div class="rb1">Sí, avisar</div><div class="rb2">Cambiar</div>`),
+  r3: robot(`<div class="hero"><small>Visita a</small><div>María Pérez</div><small>Finanzas · piso 8</small></div><div class="rr">Mensaje enviado<span class="ch">10:02</span></div><div class="rr">Entregado<span class="ch">10:02</span></div><div class="rr">Leído<span class="ch">10:03</span></div><div class="rb1">"Bajo en 2 min"</div><div class="rb2">☕ Pedir café</div>`),
+  r4: robot(`<div class="sb">Asistente · ES · EN</div><div class="rr" style="justify-content:flex-end;background:transparent;border-color:rgba(255,255,255,.16)">¿A qué hora cierra el edificio?</div><div class="rr" style="display:block">El edificio cierra a las 7:00 p. m.<small style="color:#0BDA51;font-weight:700">Ficha #014 aprobada</small></div><div class="rr" style="justify-content:flex-end;background:transparent;border-color:rgba(255,255,255,.16)">¿Dónde puedo almorzar?</div><div class="rr" style="display:block"><span class="ch w">Escalado</span><br>No tengo esa información aprobada. Le comunico con recepción.</div>`),
+  alert2: `<div class="alert"><div class="ic">⏱</div><div><b>60 s sin entrega</b><span>Alerta en recepción · SMS de respaldo enviado al anfitrión</span></div></div>`,
+  dash: `<div class="dash"><div class="hdr">Panel de recepción<span>en tiempo real</span></div><div class="kp"><div>Visitas hoy<b>48</b></div><div>Errores críticos<b>0</b></div><div>Cafés pedidos<b>17</b></div></div><div class="dr">Luis Gómez → M. Pérez<span class="ch">Leído</span></div><div class="dr">Ana Torres → M. Rojas<span class="ac"><span class="ch w">Sin entrega</span><span class="lk">📞 Llamar ext.</span></span></div><div class="dr">Pregunta escalada: "¿Hay estacionamiento?"<span class="ch">→ ficha nueva</span></div><div class="dr">Pedro Díaz → M. Salas<span class="ch" style="background:#9DB5A5">Salió</span></div></div>`,
+  metr: `<div class="pn"><span class="tg">CONFIABILIDAD</span><h3>Meta: menos de <b>1 error crítico</b> cada 10.000 eventos</h3><div class="gd"><div class="cd"><div class="bg">100.000</div><p>eventos simulados con cortes de red, reintentos y picos. Criterio: 0 críticos.</p></div><div class="cd"><div class="bg">2.000</div><p>preguntas trampa. Criterio: 0 respuestas inventadas.</p></div><div class="cd"><div class="bg">8 sem</div><p>de piloto real con reporte semanal y análisis de causa.</p></div><div class="cd"><div class="bg">&lt;10 s</div><p>tiempo promedio de aviso al anfitrión.</p></div></div></div>`,
+  plan: `<div class="pn"><span class="tg">INVERSIÓN Y PLAZOS</span><h3>Piloto en <b>10 semanas</b></h3><div class="sp"><div class="si"><span class="nu">1</span><span><b>Semana 1</b> · Flujos, directorio y fichas</span></div><div class="si"><span class="nu">2</span><span><b>Semanas 2 a 6</b> · API, WhatsApp, app del kiosco e IA</span></div><div class="si"><span class="nu">3</span><span><b>Semana 7</b> · Simulación y preguntas trampa</span></div><div class="si"><span class="nu">4</span><span><b>Semanas 8 a 10</b> · Instalación, piloto e informe</span></div></div></div>`,
+  cost: `<div class="pn"><span class="tg">QUÉ SE INVIERTE · DOCUMENTO DEL PILOTO</span><h3>Costo operativo por robot</h3><table class="tb"><tr><td>Desarrollo</td><td>Aporte en especie de los socios</td></tr><tr><td>Servidores y base de datos</td><td>50–120 USD/mes</td></tr><tr><td>WhatsApp Business API</td><td>20–60 USD/mes</td></tr><tr><td>Modelo de IA</td><td>30–100 USD/mes</td></tr><tr><td>SMS de respaldo</td><td>10–20 USD/mes</td></tr><tr class="k"><td>Total mensual</td><td>≈ 110–300 USD</td></tr><tr><td>Tablet de respaldo (pago único)</td><td>300–500 USD</td></tr></table><p class="nt">El costo del robot físico está por confirmar con el proveedor.</p></div>`,
+  ing: `<div class="pn"><span class="tg">MODELO DE INGRESOS</span><h3>Cuatro fuentes de rentabilidad <b>por robot</b></h3><div class="gd"><div class="cd"><b>Alquiler del robot</b><div class="bg s">650 USD</div><p>al mes, con equipo, software y soporte incluidos.</p></div><div class="cd"><b>Servicio de software</b><div class="bg s">350 USD</div><p>al mes, si el cliente usa su propia tablet o kiosco.</p></div><div class="cd"><b>Publicidad en pantalla</b><div class="bg s">600 USD</div><p>al mes, 4 anunciantes a 150 USD. Desde la v0.2.</p></div><div class="cd"><b>Artículo promocional</b><div class="bg s">300 USD</div><p>por campaña, con muestras junto al café.</p></div></div><p class="nt">Precios supuestos para discusión, por validar con clientes y anunciantes en Caracas.</p></div>`,
+  rent: `<div class="pn"><span class="tg">RENTABILIDAD</span><h3>Un robot en alquiler <b>con publicidad</b></h3><div class="two2"><table class="tb"><tr><td>Alquiler</td><td>650 USD</td></tr><tr><td>Publicidad (4 espacios)</td><td>600 USD</td></tr><tr><td>Promoción (1 campaña al mes)</td><td>300 USD</td></tr><tr class="k"><td>Ingreso mensual</td><td>1.550 USD</td></tr><tr><td>Costo operativo</td><td>-110 a -300 USD</td></tr><tr class="k"><td>Margen mensual</td><td>≈ 1.250–1.440 USD</td></tr></table><div class="cd"><b>Solo con alquiler</b><div class="bg s">350–540 USD</div><p>de margen al mes. La publicidad y las promociones casi lo triplican sin costo extra de equipo.</p></div></div><p class="nt">Precios, anunciantes y costo del robot son supuestos para discusión. No son garantía de resultados.</p></div>`,
+  crec: `<div class="pn"><span class="tg">PROYECCIÓN DE CRECIMIENTO</span><h3>De 1 robot a <b>40 en Caracas</b> en 3 años</h3><div class="two2"><div><div class="bars"><div style="height:17%">5</div><div style="height:45%">18</div><div style="height:100%">40</div></div><div class="bl"><span>Año 1</span><span>Año 2</span><span>Año 3</span></div></div><div class="cd"><b>Zonas objetivo</b><p>Chacao, Las Mercedes, El Rosal, Altamira y La Castellana.</p><p>Torres corporativas, clínicas, bancos y sedes de gobierno.</p></div></div><p class="nt">Proyección ilustrativa para discusión.</p></div>`,
+  end2: `<div class="full end"><div class="quote">"Cero avisos perdidos.<br><b>Cero respuestas inventadas."</b></div><div class="tag">Cuando nuestra IA no sabe algo, lo dice y le comunica con una persona.</div><div class="logo" style="margin-top:20px"><div class="mark" style="width:110px;height:110px;font-size:70px;border-radius:30px">✓</div><div class="word" style="font-size:90px">Recepción <b>IA</b></div></div></div>`,
+  end: `<div class="full end"><div class="logo"><div class="mark">✓</div><div class="word">Recepción <b>IA</b></div></div><div class="tag">La recepción que nunca falla.</div><div class="sub">CERO AVISOS PERDIDOS · CERO RESPUESTAS INVENTADAS</div></div>`,
+};
+document.getElementById('root').innerHTML = V[s] || '';
+</script></body></html>

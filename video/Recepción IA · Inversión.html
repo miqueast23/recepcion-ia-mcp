@@ -1,0 +1,288 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recepción IA · Inversión</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--acc:#FFD100;--accT:#111;--bg:#0E0E0E;--sf:#1B1B1B;--sf2:#262626;--t1:#FFFFFF;--t2:#B5B5B5;--ok:#2BD67B;--wr:#FF9F1C;--bd:rgba(255,255,255,.1)}
+body[data-p="robot"]{--acc:#00C2FF;--accT:#04121A;--bg:#07111F;--sf:#0E1D33;--sf2:#152A47;--t1:#EAF4FF;--t2:#8FA7C4;--ok:#3DE0A8;--wr:#FFB547;--bd:rgba(160,200,255,.14)}
+body[data-p="fusion"]{--acc:#FFD100;--accT:#111;--bg:#F6F5F1;--sf:#FFFFFF;--sf2:#EEECE6;--t1:#141414;--t2:#5E5C57;--ok:#0F9D58;--wr:#C77700;--bd:rgba(0,0,0,.1)}
+body[data-p="dolar"]{--acc:#2E8B57;--accT:#fff;--bg:#0B1F14;--sf:#14301F;--sf2:#1D4029;--t1:#E9F5EC;--t2:#A8C4AF;--ok:#85BB65;--wr:#D4AF37;--bd:rgba(133,187,101,.18)}
+body[data-p="dolar"] .hl,body[data-p="dolar"] .big{color:#85BB65}
+body[data-p="malaquita"]{--acc:#0BDA51;--accT:#03140A;--bg:#050505;--sf:#111412;--sf2:#18201B;--t1:#F2FFF6;--t2:#9DB5A5;--ok:#0BDA51;--wr:#F5B841;--bd:rgba(11,218,81,.18)}
+body[data-p="verde"]{--acc:#1D9E75;--accT:#fff;--bg:#F7F6F3;--sf:#FFFFFF;--sf2:#E1F5EE;--t1:#1A1A19;--t2:#5F5E5A;--ok:#0F6E56;--wr:#854F0B;--bd:rgba(0,0,0,.1)}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--t1);transition:background .3s,color .3s;overflow:hidden}
+.bar{position:fixed;top:0;left:0;right:0;display:flex;gap:8px;align-items:center;justify-content:space-between;padding:12px 16px;z-index:5;flex-wrap:wrap}
+.pals{display:flex;gap:6px;flex-wrap:wrap}.pals button{font:500 12px Inter;padding:7px 12px;border-radius:999px;border:1px solid var(--bd);background:var(--sf);color:var(--t1);cursor:pointer;display:flex;gap:6px;align-items:center}
+.pals button.on{outline:2px solid var(--acc)}.dot{width:12px;height:12px;border-radius:50%}
+.slide{position:absolute;inset:0;padding:72px 6vw 64px;display:none;flex-direction:column;justify-content:center;overflow:auto}
+.slide.on{display:flex}
+h1{font-size:clamp(34px,6vw,68px);font-weight:800;line-height:1.02;margin:0 0 16px;letter-spacing:-.02em}
+h2{font-size:clamp(26px,4vw,42px);font-weight:800;margin:0 0 20px;letter-spacing:-.01em}
+p,li{color:var(--t2);font-size:clamp(15px,1.6vw,19px);line-height:1.5}
+.tag{display:inline-block;background:var(--acc);color:var(--accT);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hl{color:var(--acc)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:20px;padding:20px}
+.card b{display:block;font-size:17px;margin-bottom:6px;color:var(--t1)}
+.big{font-size:clamp(30px,4vw,46px);font-weight:800;color:var(--acc)}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:4vw;align-items:center}
+@media(max-width:760px){.two{grid-template-columns:1fr}.slide{padding:110px 16px 70px}}
+/* phone UI */
+.phone{width:min(300px,80vw);aspect-ratio:9/18;background:var(--sf);border:1px solid var(--bd);border-radius:36px;padding:18px;margin:auto;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.ph-top{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.ph-hero{background:var(--acc);color:var(--accT);border-radius:22px;padding:16px}
+.ph-hero small{opacity:.75}.ph-hero div{font-size:26px;font-weight:800}
+.row{display:flex;justify-content:space-between;align-items:center;background:var(--sf2);border-radius:14px;padding:11px 12px;font-size:13px}
+.chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--ok);color:#fff}
+.chip.w{background:var(--wr)}
+.btn{background:var(--acc);color:var(--accT);font-weight:700;border-radius:14px;padding:13px;text-align:center;font-size:14px}
+.btn2{border:1px solid var(--bd);border-radius:14px;padding:13px;text-align:center;font-size:14px;color:var(--t1)}
+/* robot */
+.robot{width:min(260px,70vw);margin:auto;display:flex;flex-direction:column;align-items:center}
+.head{width:160px;height:120px;background:var(--sf);border:2px solid var(--acc);border-radius:40px;display:flex;align-items:center;justify-content:center;gap:26px;position:relative}
+.head:before{content:"";position:absolute;top:-26px;width:4px;height:22px;background:var(--acc)}
+.head:after{content:"";position:absolute;top:-36px;width:14px;height:14px;border-radius:50%;background:var(--acc)}
+.eye{width:26px;height:34px;border-radius:14px;background:var(--acc);animation:bl 4s infinite}
+@keyframes bl{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.screen{margin-top:12px;width:220px;background:var(--sf);border:1px solid var(--bd);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.base{width:120px;height:16px;background:var(--sf2);border-radius:0 0 30px 30px;margin-top:6px}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;align-items:flex-start}.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--acc);color:var(--accT);font-weight:800;display:flex;align-items:center;justify-content:center}
+.step p{margin:4px 0}
+.sw{display:flex;gap:6px;margin-top:10px}.sw span{flex:1;height:44px;border-radius:10px;border:1px solid var(--bd)}
+.nav{position:fixed;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:10px;align-items:center;z-index:5}
+.nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--bd);background:var(--sf);color:var(--t1);font-size:18px;cursor:pointer}
+#pg{font-size:13px;color:var(--t2);min-width:54px;text-align:center}
+table{border-collapse:collapse;width:100%;font-size:15px}td{padding:10px;border-bottom:1px solid var(--bd);color:var(--t2)}td:last-child{text-align:right;color:var(--t1);font-weight:700}
+</style></head>
+<body data-p="cashea">
+<div class="bar"><b style="font-size:14px">Recepción <span class="hl">IA</span></b>
+<div class="pals" id="pals"></div></div>
+
+<section class="slide on">
+ <div class="two"><div><span class="tag">Proyecto de inversión · 2026</span>
+ <h1>La recepción que <span class="hl">nunca falla</span> un aviso.</h1>
+ <p>Kiosco con asistente robot, avisos por WhatsApp con confirmación y una IA que solo responde lo aprobado. Experiencia de app al estilo fintech venezolana.</p></div>
+ <div class="robot"><div class="head"><div class="eye"></div><div class="eye"></div></div>
+ <div class="screen"><b>Buenos días 👋</b><span style="color:var(--t2);font-size:13px">¿Cómo le ayudo?</span><div class="btn">Tengo una visita</div><div class="btn2">Tengo un QR</div><div class="btn2">Una consulta</div></div><div class="base"></div></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">El problema</span><h2>Las recepciones pierden visitas, tiempo e imagen.</h2>
+ <div class="grid">
+ <div class="card"><b>Avisos perdidos</b><p>El anfitrión no se entera y el visitante espera sin saber qué pasa.</p></div>
+ <div class="card"><b>Datos mal registrados</b><p>Nombres escritos a mano, anfitrión equivocado, sin trazabilidad.</p></div>
+ <div class="card"><b>Respuestas improvisadas</b><p>Horarios y normas que cambian según quién esté en recepción.</p></div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="two"><div><span class="tag">La solución</span><h2>Un robot recepcionista con interfaz de app.</h2>
+ <p>Botones grandes para decidir, voz para conversar. El visitante elige a quién visita del directorio, confirma con un <b class="hl">Sí</b> y ve en tiempo real cuándo su anfitrión leyó el aviso.</p>
+ <p>Mientras espera, pide su café con un toque.</p></div>
+ <div class="phone"><div class="ph-top"><span>Avisando</span><span>⋯</span></div>
+ <div class="ph-hero"><small>Visita a</small><div>María Pérez</div><small>Finanzas · piso 8</small></div>
+ <div class="row">Visita registrada<span class="chip">10:02</span></div>
+ <div class="row">Mensaje enviado<span class="chip">10:02</span></div>
+ <div class="row">Entregado<span class="chip">10:02</span></div>
+ <div class="row">Leído<span class="chip">10:03</span></div>
+ <div class="row" style="background:var(--acc);color:var(--accT);font-weight:700">“Bajo en 2 min”</div>
+ <div class="btn2">☕ Pedir café</div></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Cómo funciona</span><h2>Flujo de una visita</h2>
+ <div class="steps">
+ <div class="step"><div class="num">1</div><p>El kiosco genera un identificador único y registra la visita.</p></div>
+ <div class="step"><div class="num">2</div><p>El sistema la guarda sin duplicados y encola el aviso al anfitrión.</p></div>
+ <div class="step"><div class="num">3</div><p>Se envía la plantilla de WhatsApp y se programa una revisión a los 60 segundos.</p></div>
+ <div class="step"><div class="num">4</div><p>Meta confirma el estado: enviado, entregado, leído.</p></div>
+ <div class="step"><div class="num">5</div><p>Si a los 60 s no hay entrega, se crea una alerta y sale un SMS de respaldo.</p></div>
+ <div class="step"><div class="num">6</div><p>La respuesta del anfitrión aparece en el kiosco y en el panel de recepción.</p></div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="two"><div class="phone"><div class="ph-top"><span>Asistente</span><span>ES · EN</span></div>
+ <div class="row" style="justify-content:flex-end;background:transparent;border:1px solid var(--bd)">¿A qué hora cierra el edificio?</div>
+ <div class="row" style="display:block;background:var(--sf2)">El edificio cierra a las 7:00 p. m.<br><small style="color:var(--acc);font-weight:700">Ficha #014 aprobada</small></div>
+ <div class="row" style="justify-content:flex-end;background:transparent;border:1px solid var(--bd)">¿Dónde puedo almorzar?</div>
+ <div class="row" style="display:block"><span class="chip w">Escalado</span><br>No tengo esa información aprobada. Le comunico con recepción.</div>
+ <div style="flex:1"></div><div class="btn2">🎤 Hablar o escribir</div></div>
+ <div><span class="tag">IA confiable</span><h2>La IA no inventa. <span class="hl">Nunca.</span></h2>
+ <p>Responde solo desde fichas aprobadas por una persona y cita la fuente. Si no está segura, lo dice y escala a recepción. Cada respuesta queda auditada.</p></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Confiabilidad</span><h2>Meta: menos de 1 error crítico cada 10.000 eventos</h2>
+ <div class="grid">
+ <div class="card"><div class="big">100.000</div><p>eventos simulados con cortes de red, reintentos y picos. Criterio: 0 críticos.</p></div>
+ <div class="card"><div class="big">2.000</div><p>preguntas trampa. Criterio: 0 respuestas inventadas.</p></div>
+ <div class="card"><div class="big">8 sem</div><p>de piloto real con reporte semanal y análisis de causa.</p></div>
+ <div class="card"><div class="big">&lt;10 s</div><p>tiempo promedio de aviso al anfitrión.</p></div>
+ </div>
+</section>
+
+<section class="slide">
+ <div class="two"><div><span class="tag">Panel de recepción</span><h2>Todo en tiempo real</h2>
+ <p>Visitas en curso, alertas de avisos sin entregar con acción de llamar a la extensión, preguntas escaladas que se convierten en fichas nuevas y pedidos de cafetería.</p></div>
+ <div class="card" style="display:flex;flex-direction:column;gap:10px">
+ <div class="grid" style="grid-template-columns:1fr 1fr"><div class="card" style="background:var(--sf2)"><small style="color:var(--t2)">Visitas hoy</small><div class="big" style="font-size:30px">48</div></div><div class="card" style="background:var(--sf2)"><small style="color:var(--t2)">Errores críticos</small><div class="big" style="font-size:30px">0</div></div></div>
+ <div class="row">Luis Gómez → M. Pérez<span class="chip">Leído</span></div>
+ <div class="row">Ana Torres → M. Rojas<span class="chip w">Sin entrega</span></div>
+ <div class="row">Pedro Díaz → M. Salas<span class="chip" style="background:var(--t2)">Salió</span></div></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Inversión y plazos</span><h2>Piloto en 10 semanas</h2>
+ <div class="two"><div class="steps">
+ <div class="step"><div class="num">1</div><p><b style="color:var(--t1)">Sem 1</b> · Flujos, directorio y fichas</p></div>
+ <div class="step"><div class="num">2</div><p><b style="color:var(--t1)">Sem 2–6</b> · API, WhatsApp, app del kiosco e IA</p></div>
+ <div class="step"><div class="num">3</div><p><b style="color:var(--t1)">Sem 7</b> · Simulación y preguntas trampa</p></div>
+ <div class="step"><div class="num">4</div><p><b style="color:var(--t1)">Sem 8–10</b> · Instalación, piloto e informe</p></div></div>
+ <div class="card"><table>
+ <tr><td>Servidores y base de datos</td><td>50–120 USD</td></tr>
+ <tr><td>WhatsApp Business API</td><td>20–60 USD</td></tr>
+ <tr><td>Modelo de IA</td><td>30–100 USD</td></tr>
+ <tr><td>SMS de respaldo</td><td>10–20 USD</td></tr>
+ <tr><td style="color:var(--t1)">Total mensual</td><td class="hl">≈110–300 USD</td></tr>
+ <tr><td>Tablet (pago único)</td><td>300–500 USD</td></tr></table></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Qué se invierte · Documento del piloto</span><h2>Inversión del piloto frente al retorno proyectado</h2>
+ <div class="two"><div class="card"><b>Según el documento “Piloto de software ROBOT”</b><table>
+ <tr><td>Desarrollo</td><td>Aporte en especie de los socios</td></tr>
+ <tr><td>Nube y base de datos</td><td>50–120 USD/mes</td></tr>
+ <tr><td>WhatsApp Business API</td><td>20–60 USD/mes</td></tr>
+ <tr><td>Modelo de IA</td><td>30–100 USD/mes</td></tr>
+ <tr><td>SMS de respaldo</td><td>10–20 USD/mes</td></tr>
+ <tr><td>Tablet de respaldo y soporte</td><td>300–500 USD único</td></tr>
+ <tr><td style="color:var(--t1)">Efectivo total del piloto (10 semanas)</td><td class="hl">≈ 600–1.250 USD</td></tr></table></div>
+ <div class="grid" style="grid-template-columns:1fr 1fr">
+ <div class="card"><small style="color:var(--t2)">Costo operativo por robot</small><div class="big" style="font-size:30px">110–300</div><p style="margin:0">USD/mes (documento)</p></div>
+ <div class="card"><small style="color:var(--t2)">Ingreso por robot</small><div class="big" style="font-size:30px">≈ 810</div><p style="margin:0">USD/mes (proyección)</p></div>
+ <div class="card"><small style="color:var(--t2)">Margen por robot</small><div class="big" style="font-size:30px">510–700</div><p style="margin:0">USD/mes</p></div>
+ <div class="card"><small style="color:var(--t2)">Recuperación del piloto</small><div class="big" style="font-size:30px">≈ 2–3</div><p style="margin:0">meses con 1 robot</p></div></div></div>
+ <p style="font-size:13px">El costo del robot físico no está en el documento y queda por definir con el proveedor. La publicidad está fuera del piloto y entra en la v0.2.</p>
+</section>
+
+<section class="slide">
+ <span class="tag">Modelo de ingresos</span><h2>Tres fuentes de rentabilidad por robot</h2>
+ <div class="grid">
+ <div class="card"><b>🤖 Alquiler del robot</b><div class="big">450</div><p>USD/mes por equipo instalado, con contrato de 12 meses. Incluye kiosco, IA y panel.</p></div>
+ <div class="card"><b>🛠️ Servicio</b><div class="big">120</div><p>USD/mes por mantenimiento, soporte, actualización de fichas, reportes y café integrado.</p></div>
+ <div class="card"><b>📣 Promoción publicitaria</b><div class="big">240</div><p>USD/mes. 3 espacios de 80 USD en la pantalla del robot mientras el visitante espera. Desde la v0.2.</p></div>
+ <div class="card" style="border-color:var(--acc)"><b>Total por robot</b><div class="big">≈ 810</div><p>USD/mes. La publicidad suma ingreso sin costo extra de hardware.</p></div></div>
+ <p style="font-size:13px">Precios supuestos para discusión, por validar con clientes y anunciantes en Caracas.</p>
+</section>
+
+<section class="slide">
+ <span class="tag">Proyección · Robot #1 en Caracas</span><h2>Primer año en una torre corporativa de Chacao</h2>
+ <div class="two"><div class="grid" style="grid-template-columns:1fr 1fr">
+ <div class="card"><div class="big">≈60</div><p>visitas por día hábil (el documento estima 30–80)</p></div>
+ <div class="card"><div class="big">≈15.000</div><p>visitas en 12 meses. Para validar el 0,01 % se necesitan unas 30.000, que se completan con la simulación</p></div>
+ <div class="card"><div class="big">≈6.000</div><p>pedidos de café gestionados</p></div>
+ <div class="card"><div class="big">-3 min</div><p>de espera promedio por visita</p></div></div>
+ <div class="card"><b>Ruta del robot #1</b><table>
+ <tr><td>Mes 1–2</td><td>Piloto validado</td></tr>
+ <tr><td>Mes 3</td><td>Escalados &lt; 15 %</td></tr>
+ <tr><td>Mes 6</td><td>Base con ≈200 fichas</td></tr>
+ <tr><td>Mes 12</td><td>Caso de éxito publicado</td></tr></table>
+ <p style="font-size:13px;margin:10px 0 0">Escenario ilustrativo. Las cifras se reemplazan con los datos reales del piloto.</p></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Proyección de crecimiento</span><h2>De 1 robot a 40 en Caracas en 3 años</h2>
+ <div class="two"><div class="card"><table>
+ <tr><td></td><td>Robots</td><td style="text-align:right">Solo alquiler</td><td>Alquiler + servicio + publicidad</td></tr>
+ <tr><td>Año 1</td><td style="text-align:right">5</td><td style="text-align:right">≈ 16.000</td><td>≈ 29.000 USD</td></tr>
+ <tr><td>Año 2</td><td style="text-align:right">18</td><td style="text-align:right">≈ 75.000</td><td>≈ 135.000 USD</td></tr>
+ <tr><td>Año 3</td><td style="text-align:right">40</td><td style="text-align:right">≈ 190.000</td><td class="hl">≈ 340.000 USD</td></tr></table>
+ <div style="display:flex;align-items:flex-end;gap:14px;height:120px;margin-top:16px">
+ <div style="flex:1;height:12%;background:var(--acc);border-radius:8px 8px 0 0"></div>
+ <div style="flex:1;height:42%;background:var(--acc);border-radius:8px 8px 0 0"></div>
+ <div style="flex:1;height:100%;background:var(--acc);border-radius:8px 8px 0 0"></div></div>
+ <div style="display:flex;gap:14px;font-size:12px;color:var(--t2);text-align:center"><span style="flex:1">Año 1</span><span style="flex:1">Año 2</span><span style="flex:1">Año 3</span></div></div>
+ <div><p><b style="color:var(--t1)">Zonas objetivo:</b> Chacao, Las Mercedes, El Rosal, Altamira y La Castellana. Torres corporativas, clínicas, bancos y sedes de gobierno.</p>
+ <p><b style="color:var(--t1)">Supuestos:</b> alquiler de 450, servicio de 120 y publicidad de 240 USD al mes por robot. Costo operativo de 110–300 USD al mes según el documento del piloto. Margen bruto ≈ 63–86 %, instalaciones escalonadas durante cada año.</p>
+ <p style="font-size:13px">Proyección ilustrativa para discusión. No es una garantía de resultados.</p></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Qué se invierte · según el documento del piloto</span><h2>Inversión del piloto de 10 semanas</h2>
+ <div class="two"><div class="card"><table>
+ <tr><td>Desarrollo</td><td>Aporte en especie</td></tr>
+ <tr><td>Servidores y base de datos</td><td>50–120 USD/mes</td></tr>
+ <tr><td>WhatsApp Business API</td><td>20–60 USD/mes</td></tr>
+ <tr><td>Modelo de IA</td><td>30–100 USD/mes</td></tr>
+ <tr><td>SMS de respaldo</td><td>10–20 USD/mes</td></tr>
+ <tr><td>Tablet de respaldo y soporte</td><td>300–500 USD único</td></tr>
+ <tr><td style="color:var(--t1)">Total piloto (≈3 meses)</td><td class="hl">≈ 630–1.400 USD</td></tr></table></div>
+ <div class="card"><b>Documento vs. proyección</b><table>
+ <tr><td>Visitas por día</td><td>30–80 → usamos 60</td></tr>
+ <tr><td>Eventos por mes</td><td>1.000–2.000</td></tr>
+ <tr><td>Validación 0,01 %</td><td>30.000 eventos</td></tr>
+ <tr><td>Publicidad en pantalla</td><td>Fuera del piloto, entra en v0.2</td></tr>
+ <tr><td>Costo del robot físico</td><td class="hl">Por confirmar</td></tr></table>
+ <p style="font-size:13px;margin:10px 0 0">El documento no incluye el precio del robot. Es el dato que más mueve la inversión total.</p></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Modelo de ingresos</span><h2>Cuatro fuentes de rentabilidad por robot</h2>
+ <div class="grid">
+ <div class="card"><b>Alquiler del robot</b><div class="big">650 USD</div><p>al mes, con equipo, software y soporte incluidos.</p></div>
+ <div class="card"><b>Servicio de software</b><div class="big">350 USD</div><p>al mes, si el cliente usa su propia tablet o kiosco.</p></div>
+ <div class="card"><b>Publicidad en pantalla</b><div class="big">600 USD</div><p>al mes, con 4 anunciantes a 150 USD cada uno. Entra en la v0.2.</p></div>
+ <div class="card"><b>Artículo promocional</b><div class="big">300 USD</div><p>por campaña, cuando una marca entrega muestras o artículos junto al café.</p></div>
+ </div>
+</section>
+
+<section class="slide">
+ <span class="tag">Rentabilidad</span><h2>Un robot en alquiler con publicidad</h2>
+ <div class="two"><div class="card"><table>
+ <tr><td>Alquiler</td><td>650 USD</td></tr>
+ <tr><td>Publicidad (4 espacios)</td><td>600 USD</td></tr>
+ <tr><td>Promoción (1 campaña al mes)</td><td>300 USD</td></tr>
+ <tr><td style="color:var(--t1)">Ingreso mensual</td><td>1.550 USD</td></tr>
+ <tr><td>Costo operativo (documento)</td><td>-110 a -300 USD</td></tr>
+ <tr><td style="color:var(--t1)">Margen mensual</td><td class="hl">≈ 1.250–1.440 USD</td></tr>
+ <tr><td style="color:var(--t1)">Margen anual</td><td class="hl">≈ 15.000–17.000 USD</td></tr></table></div>
+ <div><p>Con solo el alquiler, el margen queda entre 350 y 540 USD al mes. La publicidad y las promociones multiplican la rentabilidad casi por tres sin costo adicional de equipo.</p>
+ <p><b style="color:var(--t1)">Recuperación:</b> si el robot cuesta 8.000 USD, se recupera en unos 6 meses con publicidad, o en 15 a 23 meses solo con alquiler.</p>
+ <p style="font-size:13px">Precios, número de anunciantes y costo del robot son supuestos para discusión. No son una garantía de resultados.</p></div></div>
+</section>
+
+<section class="slide">
+ <span class="tag">Opciones de color</span><h2>Elija la identidad del proyecto</h2>
+ <div class="grid" id="palcards"></div>
+ <p style="margin-top:18px">Toque una tarjeta o use los botones de arriba para ver toda la presentación con esa paleta.</p>
+</section>
+
+<section class="slide" style="align-items:flex-start">
+ <span class="tag">Cierre</span>
+ <h1>“Cero avisos perdidos.<br><span class="hl">Cero respuestas inventadas.</span>”</h1>
+ <p>Cuando nuestra IA no sabe algo, lo dice y le comunica con una persona.</p>
+</section>
+
+<div class="nav"><button onclick="mv(-1)">‹</button><span id="pg"></span><button onclick="mv(1)">›</button></div>
+<script>
+const P=[
+ {id:"cashea",n:"Estilo Cashea",d:"Amarillo eléctrico sobre negro. Cercano, fintech, muy reconocible en Venezuela.",c:["#FFD100","#0E0E0E","#1B1B1B","#FFFFFF"]},
+ {id:"robot",n:"Robot tecnológico",d:"Cian sobre azul noche. Transmite IA, precisión y futuro.",c:["#00C2FF","#07111F","#152A47","#EAF4FF"]},
+ {id:"fusion",n:"Fusión clara",d:"Amarillo Cashea sobre fondo claro. Ideal para lobbies luminosos y presentaciones impresas.",c:["#FFD100","#F6F5F1","#FFFFFF","#141414"]},
+ {id:"malaquita",n:"Verde malaquita",d:"Verde dinero sobre negro profundo. Habla de rentabilidad y crecimiento, ideal para la parte financiera.",c:["#0BDA51","#050505","#18201B","#F2FFF6"]},
+ {id:"verde",n:"Corporativo sobrio",d:"Verde azulado de la identidad provisional. Confianza y calma institucional.",c:["#1D9E75","#F7F6F3","#E1F5EE","#1A1A19"]},
+ {id:"dolar",n:"Verde dólar",d:"El verde del billete con dorado. Habla de rentabilidad e inversión.",c:["#2E8B57","#0B1F14","#14301F","#E9F5EC"]}];
+const set=id=>{document.body.dataset.p=id;try{localStorage.setItem("pal",id)}catch(e){}
+ document.querySelectorAll(".pals button").forEach(b=>b.classList.toggle("on",b.dataset.id===id))};
+document.getElementById("pals").innerHTML=P.map(p=>`<button data-id="${p.id}" onclick="set('${p.id}')"><span class="dot" style="background:${p.c[0]};box-shadow:inset 0 0 0 3px ${p.c[1]}"></span>${p.n}</button>`).join("");
+document.getElementById("palcards").innerHTML=P.map(p=>`<div class="card" style="cursor:pointer" onclick="set('${p.id}')"><b>${p.n}</b><p style="font-size:14px;margin:0">${p.d}</p><div class="sw">${p.c.map(x=>`<span style="background:${x}" title="${x}"></span>`).join("")}</div><p style="font-size:12px;margin:8px 0 0">${p.c.join(" · ")}</p></div>`).join("");
+let s=0;const S=[...document.querySelectorAll(".slide")];
+function mv(d){S[s].classList.remove("on");s=Math.max(0,Math.min(S.length-1,s+d));S[s].classList.add("on");document.getElementById("pg").textContent=(s+1)+" / "+S.length}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key===" ")mv(1);if(e.key==="ArrowLeft")mv(-1)});
+let sv="cashea";try{sv=localStorage.getItem("pal")||"cashea"}catch(e){}set(sv);mv(0);
+</script></body></html>
+
+</body></html>

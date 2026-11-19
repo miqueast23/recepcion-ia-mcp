@@ -1,0 +1,16 @@
+Tomas de Coverr (https://coverr.co/license): uso comercial libre, sin atribucion obligatoria. Solo clips no premium.
+fizD2gjAlJ : Office building - coverr.co/videos/coverr-office-building-1731
+AxSHgGwKa4 : A man checking the time on his watch - coverr.co/videos/coverr-a-man-checking-the-time-on-his-watch-3435
+S3rXHOHnGX : Taking calls at the office - coverr.co/videos/coverr-taking-calls-at-the-office-7480
+uDybSbfx4A : A girl working at her office desk feeling tired - coverr.co/videos/coverr-a-girl-working-at-her-office-desk-feeling-tired-2989
+LzeclFTWXc : Sitting down in the office - coverr.co/videos/coverr-sitting-down-in-the-office-72
+dz0tQvfu7Q : Woman typing on her smartphone - coverr.co/videos/coverr-woman-typing-on-her-smartphone-967
+Tr44VDCeH0 : Woman Texting in Hotel Hallway While Waiting - coverr.co/videos/coverr-waiting-for-check-in-hotel-lobby-scene
+N3b3gMWdGc : A woman talking on her phone while sitting at her desk in an office - coverr.co/videos/coverr-a-woman-talking-on-her-phone-while-sitting-at-her-desk-in-an-office-92
+skn2jzyNMZ : Woman meeting a friend at a hotel  - coverr.co/videos/coverr-woman-meeting-a-friend-at-a-hotel-1073
+EmgwSfLYHT : Businessman enters building - coverr.co/videos/coverr-businessman-enters-building-9466
+zxmTMP7Z1z : A man sitting at his desk and talking on his mobile phone - coverr.co/videos/coverr-a-man-sitting-at-his-desk-and-talking-on-his-mobile-phone-1019
+hFFNcSY1u5 : Skyscrapers in the reflection - coverr.co/videos/coverr-skyscrapers-in-the-reflection-8096
+RMRP71nS2G : A glass building in Lisbon - coverr.co/videos/coverr-a-glass-building-in-lisbon-6636
+Voces: Microsoft neural es-VE (SebastianNeural, PaolaNeural) via edge-tts. Musica: sintetizada en build.py.
+Video robot (RecepcionIA_robot.mp4): mismas tomas; contenido, cifras y modelo de robot tomados de 'Recepcion IA - Inversion.html'.
